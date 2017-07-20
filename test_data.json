@@ -1,0 +1,269 @@
+{
+  "failingItems":
+  {
+    "note":"The following items in the test DO NOT pass, due to how the word 'the' in arabic works when close to #'s with Lucene",
+    "itemsToWorkOn":[21,22]
+  },
+
+  "items": [
+    {
+      "post": "اهلا وسهلا بكم جميعا",
+      "expected": "اهلا وسهلا <font color=\"#0000FF\"><b>بكم</b></font> جميعا",
+      "title": "1",
+      "keyword": [
+        "بكم"
+      ]
+    },
+    {
+      "post": "اهلا وسهلا بكم جميعا",
+      "expected": "<font color=\"#0000FF\"><b>اهلا</b></font> وسهلا <font color=\"#0000FF\"><b>بكم</b></font> جميعا",
+      "title": "2",
+      "keyword": [
+        "اهلا",
+        "بكم"
+      ]
+    },
+    {
+      "post": "اهلا وسهلا (بكم) جميعا",
+      "expected": "اهلا وسهلا <font color=\"#0000FF\"><b>(بكم)</b></font> جميعا",
+      "title": "3",
+      "keyword": [
+        "(بكم)"
+      ]
+    },
+    {
+      "post": "#اهلا وسهلا بكم اليوم",
+      "expected": "#اهلا وسهلا بكم <font color=\"#0000FF\"><b>اليوم</b></font>",
+      "title": "4",
+      "keyword": [
+        "اليوم"
+      ]
+    },
+    {
+      "post": "اهلا بك يا #مصر اليوم",
+      "expected": "اهلا بك <font color=\"#0000FF\"><b>يا</b></font> #مصر <font color=\"#0000FF\"><b>اليوم</b></font>",
+      "title": "5",
+      "keyword": [
+        "يا",
+        "اليوم"
+      ]
+    },
+    {
+      "post": "#عشق الممنوع على م ب س ١",
+      "expected": "#<font color=\"#0000FF\"><b>عشق</b></font> <font color=\"#0000FF\"><b>الممنوع</b></font> على م ب س ١",
+      "title": "6",
+      "keyword": [
+        "عشق الممنوع"
+      ]
+    },
+    {
+      "post": "#عشق الممنوع على م ب س ١",
+      "expected": "<font color=\"#0000FF\"><b>#عشق</b></font> <font color=\"#0000FF\"><b>الممنوع</b></font> على م ب س ١",
+      "title": "7",
+      "keyword": [
+        "#عشق الممنوع"
+      ]
+    },
+    {
+      "post": "اهلا وسهلا اهلا اهلا اتفضلوا",
+      "expected": "<font color=\"#0000FF\"><b>اهلا</b></font> وسهلا <font color=\"#0000FF\"><b>اهلا</b></font> <font color=\"#0000FF\"><b>اهلا</b></font> اتفضلوا",
+      "title": "8",
+      "keyword": [
+        "اهلا"
+      ]
+    },
+    {
+      "post": "@اهلا وسهلا اليوم",
+      "expected": "@اهلا وسهلا <font color=\"#0000FF\"><b>اليوم</b></font>",
+      "title": "9",
+      "keyword": [
+        "اليوم"
+      ]
+    },
+    {
+      "post": "@اهلا وسهلا اليوم",
+      "expected": "@<font color=\"#0000FF\"><b>اهلا</b></font> وسهلا اليوم",
+      "title": "10",
+      "keyword": [
+        "اهلا"
+      ]
+    },
+    {
+      "post": "@اهلا وسهلا اليوم",
+      "expected": "<font color=\"#0000FF\"><b>@اهلا</b></font> وسهلا اليوم",
+      "title": "11",
+      "keyword": [
+        "@اهلا"
+      ]
+    },
+    {
+      "post": "اهلا @م ب س مصر وسهلا",
+      "expected": "اهلا @<font color=\"#0000FF\"><b>م</b></font> <font color=\"#0000FF\"><b>ب</b></font> <font color=\"#0000FF\"><b>س</b></font> <font color=\"#0000FF\"><b>مصر</b></font> وسهلا",
+      "title": "12",
+      "keyword": [
+        "م ب س مصر"
+      ]
+    },
+    {
+      "post": "اهلا @م ب س مصر وسهلا",
+      "expected": "اهلا <font color=\"#0000FF\"><b>@م</b></font> <font color=\"#0000FF\"><b>ب</b></font> <font color=\"#0000FF\"><b>س</b></font> <font color=\"#0000FF\"><b>مصر</b></font> وسهلا",
+      "title": "13",
+      "keyword": [
+        "@م ب س مصر"
+      ]
+    },
+    {
+      "post": "شُكْراً لكم جميعا",
+      "expected": "<font color=\"#0000FF\"><b>شُكْراً</b></font> لكم جميعا",
+      "title": "14",
+      "keyword": [
+        "شُكْراً"
+      ]
+    },
+    {
+      "post": "٣،٢،١ ارقص الساعة ٩ مساء",
+      "expected": "<font color=\"#0000FF\"><b>٣،٢،١</b></font> <font color=\"#0000FF\"><b>ارقص</b></font> الساعة ٩ مساء",
+      "title": "15",
+      "keyword": [
+        "٣،٢،١ ارقص"
+      ]
+    },
+    {
+      "post": "٣،٢،١ ارقص الساعة ٩ مساء!",
+      "expected": "٣،٢،١ ارقص الساعة ٩ <font color=\"#0000FF\"><b>مساء</b></font>!",
+      "title": "16",
+      "keyword": [
+        "مساء"
+      ]
+    },
+    {
+      "post": "٣،٢،١ ارقص الساعة ٩ مساء؟",
+      "expected": "٣،٢،١ ارقص الساعة ٩ <font color=\"#0000FF\"><b>مساء؟</b></font>",
+      "title": "17",
+      "keyword": [
+        "مساء؟"
+      ]
+    },
+    {
+      "post": "كاراتي/محمد الأحمد",
+      "expected": "<font color=\"#0000FF\"><b>كاراتي</b></font>/<font color=\"#0000FF\"><b>محمد</b></font> الأحمد",
+      "title": "18",
+      "keyword": [
+        "محمد",
+        "كاراتي"
+      ]
+    },
+    {
+      "post": "القصر المراكشي:صور",
+      "expected": "القصر <font color=\"#0000FF\"><b>المراكشي</b></font>:<font color=\"#0000FF\"><b>صور</b></font>",
+      "title": "19",
+      "keyword": [
+        "المراكشي",
+        "صور"
+      ]
+    },
+    {
+      "post": "مساء الخير ل\"الملك\":على م ب س نيوز",
+      "expected": "مساء الخير ل\"<font color=\"#0000FF\"><b>الملك</b></font>\":<font color=\"#0000FF\"><b>على</b></font> م ب س نيوز",
+      "title": "20",
+      "keyword": [
+        "الملك",
+        "على"
+      ]
+    },
+    {
+      "post": "سوف يذاع يوم ال13 مساءً",
+      "expected": "سوف يذاع يوم ال<font color=\"#0000FF\"><b>13</b></font> مساءً",
+      "title": "21",
+      "keyword": [
+        "13"
+      ]
+    },
+    {
+      "post": "سوف يذاع يوم ال١٣ مساء",
+      "expected": "سوف يذاع يوم ال<font color=\"#0000FF\"><b>١٣</b></font> مساء",
+      "title": "22",
+      "keyword": [
+        "١٣"
+      ]
+    },
+    {
+      "post": "سوف يذاع يوم ال13 مساءً",
+      "expected": "سوف يذاع يوم ال13 <font color=\"#0000FF\"><b>مساءً</b></font>",
+      "title": "23",
+      "keyword": [
+        "مساءً"
+      ]
+    },
+    {
+      "post": "سوف يذاع يوم ال13 مساء",
+      "expected": "سوف يذاع <font color=\"#0000FF\"><b>يوم</b></font> ال13 مساء",
+      "title": "24",
+      "keyword": [
+        "يوم"
+      ]
+    },
+    {
+      "post": "اليوم – الحلقة الكاملة – جزء ثاني – للعشق الممنوع",
+      "expected": "<font color=\"#0000FF\"><b>اليوم</b></font> – <font color=\"#0000FF\"><b>الحلقة</b></font> <font color=\"#0000FF\"><b>الكاملة</b></font> – <font color=\"#0000FF\"><b>جزء</b></font> ثاني – <font color=\"#0000FF\"><b>للعشق</b></font> <font color=\"#0000FF\"><b>الممنوع</b></font>",
+      "title": "25",
+      "keyword": [
+        "اليوم",
+        "الحلقة الكاملة",
+        "جزء",
+        "للعشق الممنوع"
+      ]
+    },
+    {
+      "post": "يوم الأربعاء..شاركونا!",
+      "expected": "يوم <font color=\"#0000FF\"><b>الأربعاء</b></font>..<font color=\"#0000FF\"><b>شاركونا</b></font>!",
+      "title": "26",
+      "keyword": [
+        "الأربعاء",
+        "شاركونا"
+      ]
+    },
+    {
+      "post": "اهم ١٠",
+      "expected": "<font color=\"#0000FF\"><b>اهم</b></font> <font color=\"#0000FF\"><b>١٠</b></font>",
+      "title": "27",
+      "keyword": [
+        "اهم",
+        "١٠"
+      ]
+    },
+    {
+      "post": "اهم 10",
+      "expected": "<font color=\"#0000FF\"><b>اهم</b></font> <font color=\"#0000FF\"><b>10</b></font>",
+      "title": "28",
+      "keyword": [
+        "اهم",
+        "10"
+      ]
+    },
+    {
+      "post": "٣،٢،١",
+      "expected": "٣،<font color=\"#0000FF\"><b>٢</b></font>،١",
+      "title": "29",
+      "keyword": [
+        "٢"
+      ]
+    },
+    {
+      "post": "#عشق_الممنوع",
+      "expected": "<font color=\"#0000FF\"><b>#عشق_الممنوع</b></font>",
+      "title": "30",
+      "keyword": [
+        "#عشق_الممنوع"
+      ]
+    },
+    {
+      "post": "٣،٢،١ ارقص الساعة ٩ مساء!",
+      "expected": "٣،٢،١ ارقص الساعة ٩ <font color=\"#0000FF\"><b>مساء!</b></font>",
+      "title": "31",
+      "keyword": [
+        "مساء!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<html>
+    <head>
+      <title>Render Highlighted Arabic Data correctly in HTML</title>
+      <style>
+        * {
+          font-family:arial;
+        }
+
+        td{
+          vertical-align:top;
+          white-space:nowrap;
+        }
+        p {
+          line-height:0.45em;
+        }
+        #help p {
+          line-height:1em !important;
+        }
+
+        font{
+            background-color:yellow;
+            color:black!important;
+        }
+      </style>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <script>
+
+function renderTable(data){
+
+  var $table =$('<table border=1 cellpadding=5></table>');
+
+  hilightExpected($table,data);
+
+  $('body').append($table);
+}
+
+function getDataForDump(data)
+{
+  var result = [];
+  for (var i=0; i < data.length; i++)
+  {
+    var item = data[i];
+    var it = {
+      title: item.title,
+      post: item.post,
+      expected: item.expected,
+      keyword: item.keyword.join(",   ")
+    }
+    result.push(it);
+  }
+  return result;
+}
+
+function line(data)
+{
+  return "<p>" + data + "</p>";
+}
+
+function bdi(data) {
+  return "<bdi>" + data + "</bdi>";
+}
+
+function hilightExpected($table,data) {
+
+    var hilight_prefix = '<font color="#0000FF">';
+    var hilight_postfix = '</font>';
+
+    // Dump the data to the javascript console, where it will
+    // be rendered like in a browser. This lets us see how the
+    // raw data would be rendered with zero effort.
+    console.table(getDataForDump(data));
+
+    var $tr = $('<tr></tr>');
+    $table.append($tr);
+    $tr.append('<td>Screenshot from Google Doc</td>');
+    $tr.append('<td>Data directlyfrom json file</td>');
+    $tr.append('<td>bdi tag being used to correctly display arabic</td>');
+
+    for (var i=0; i < data.length; i++)
+    {
+      var post = data[i].post;
+      var title = data[i].title;
+      var numberInDoc = parseInt(data[i].title);
+      var keyword = data[i].keyword.join(" + ");
+
+      /*
+      var $tr = $('<tr><td colspan="4">' + title + '</td></tr>');
+      $table.append($tr);
+      */
+
+      var $tr = $('<tr></tr>');
+      $table.append($tr);
+
+      // Transfrom the json post into fully prefixed post
+      var item = data[i];
+      var expected = item.expected;
+
+      // add column with image for comparison
+      var html = "";
+      html += "<td>";
+      html += '<img src="images/' + numberInDoc + '.png"></img>';
+      html += "</td>";
+      var $td = $(html);
+      $tr.append($td);
+
+      // add column with just raw data in HTML
+      var html = "";
+      html += "<td>";
+      html += line("&nbsp;");
+      html += line(keyword);
+      html += line(post);
+      html += line(expected);
+      html += "</td>";
+      var $td = $(html);
+      $tr.append($td);
+
+      // add column with <bdi> wrapping each item
+      var html = "";
+      html += "<td>";
+      html += line("&nbsp;");
+      html += line(bdi(keyword));
+      html += line(bdi(post));
+      html += line(bdi(expected));
+      html += "</td>";
+      var $td = $(html);
+      $tr.append($td);
+    }
+}
+
+function main() {
+  var data = [];
+  $.ajax('test_data.json', {
+    success:function(data){
+      renderTable(data.items);
+    }
+  }
+  );
+}
+
+  </script>
+    </head>
+  <body>
+    <h1>Test Cases for Highlighting keywords in Arabic content</h1>
+    <div id="help" astyle="display:none">
+      <p>This document shows how to highlight keywords in arabic content, and display it correctly in a browser.</p>
+      <p>It addresses many real uses cases, using hash tags and @mentions to ensure they render correctly.</p>
+      <h2>Overview</h2>
+      <p>The first column is a screenshot of a test case and how it SHOULD render in a browser.</p>
+      <p>The second column is the data rendered in a browser, wrapped with a "bdi" tag. This makes it display correctly.</p>
+      <p>The third column is the data rendered without the "bdi" tag, to show that sometimes the bdi tag is needed, which can clearly be seen when comparing this to the screenshot in column 1</p>
+      <p>Why do this? To make sure the data in the json file is right, and that it can be used for unit tests comparing raw arabic content and keywords with the expected highlighted result.</p>
+      <p>Note: Due to ajax restrictions in loading the json file, this page must be loaded in a web server. You can use "python -m SimpleHTTPServer" on most systems to do this easily.</p>
+    </div>
+
+    <script>main()</script> 
+  </body>
+</html>
