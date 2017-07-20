@@ -12,4 +12,6 @@ This is intended as a starting point for anyone that wants to test highlighting 
 
 There are 31 test cases in the `test_data.json` file. Here's a screenshot of 2 of them.....
 
+LICENSE: MIT
+
 ![](screenshot.png)
