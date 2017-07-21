@@ -1,5 +1,7 @@
 # arabic_highlighting_of_keywords_hashtags_and_mentions
-Simple test case showing how to highlight keywords in arabic content and display it correctly
+Simple test case showing how to highlight keywords in arabic content and display it correctly.
+
+In short - the test data is valid, and shows that wrapping your mixed arabic/english content with a "bdi" tag makes it render correctly in at least modern versions of Chrome, Safari and Firefox.
 
 # How to run 
 - clone this repo
